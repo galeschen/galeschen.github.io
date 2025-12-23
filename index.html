@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gale Chen</title>
+
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;500&display=swap');
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        background: #fff;
+        color: #111;
+        font-family: 'Inter', sans-serif;
+        font-size: 16px;
+        line-height: 1.7;
+      }
+
+      header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 2rem 5%;
+        border-bottom: 1px solid #bbb;
+      }
+
+      .site-name-container {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .site-name {
+        font-size: 4.5rem;
+        font-weight: 500;
+        letter-spacing: 0.05em;
+        line-height: 1;
+      }
+
+      .pronouns {
+        font-size: 1rem;
+        font-weight: 300;
+        color: #666;
+        margin-top: 0.15rem;
+        letter-spacing: 0.05em;
+        text-transform: lowercase;
+      }
+
+      /* ================= NAV ================= */
+
+      nav a {
+        position: relative;
+        margin-left: 2rem;
+        text-decoration: none;
+        color: #111;
+        font-weight: 300;
+        font-size: 0.95rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        padding-bottom: 4px;
+      }
+
+      nav a::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        height: 1px;
+        background: #111;
+        transform: scaleX(0);
+        transform-origin: right;
+        transition: transform 0.25s ease;
+      }
+
+      nav a:hover::after {
+        transform: scaleX(1);
+        transform-origin: left;
+      }
+
+      /* ====================================== */
+
+      section {
+        opacity: 0;
+        transform: translateY(40px);
+        transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        padding: 6rem 5%;
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      section.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      section + section {
+        border-top: 1px solid #999;
+      }
+
+      h2 {
+        font-size: 3rem;
+        margin-bottom: 2rem;
+        font-weight: 500;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: #333;
+      }
+
+      p,
+      li {
+        font-size: 1rem;
+        font-weight: 300;
+        color: #444;
+      }
+
+      ul {
+        list-style: disc;
+        padding-left: 1.2em;
+        line-height: 1.6;
+      }
+
+      a {
+        color: #111;
+        text-decoration: underline;
+        text-underline-offset: 2px;
+      }
+
+      a:hover {
+        text-decoration: none;
+      }
+
+      footer {
+        text-align: center;
+        padding: 4rem 0 2rem;
+        font-size: 0.9rem;
+        color: #aaa;
+      }
+
+      .about-content {
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+      }
+
+      .about-content img {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        object-fit: cover;
+        flex-shrink: 0;
+      }
+
+      .section-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 3rem;
+      }
+
+      .section-item {
+        border-left: 2px solid #eee;
+        padding-left: 1rem;
+      }
+
+      .section-header {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        margin-bottom: 0.5rem;
+      }
+
+      .section-role {
+        font-weight: 500;
+        font-size: 1.05rem;
+        color: #222;
+      }
+
+      .section-meta {
+        font-size: 0.9rem;
+        color: #999;
+        font-weight: 300;
+      }
+
+      .section-item p {
+        margin: 0;
+        font-size: 0.95rem;
+        color: #444;
+        font-weight: 300;
+        line-height: 1.6;
+      }
+
+      .section-download {
+        margin-top: 3rem;
+        font-weight: 400;
+      }
+
+      .section-download a {
+        text-decoration: none;
+        font-size: 0.95rem;
+        color: #111;
+        border-bottom: 1px solid #ccc;
+        padding-bottom: 2px;
+        transition: border-color 0.2s;
+      }
+
+      .section-download a:hover {
+        border-color: #111;
+      }
+
+      @media (max-width: 600px) {
+        .site-name {
+          font-size: 2.5rem;
+        }
+
+        nav a {
+          margin-left: 1.2rem;
+          font-size: 0.85rem;
+        }
+
+        section {
+          padding: 4rem 6%;
+        }
+
+        .about-content {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+
+        .about-content img {
+          width: 120px;
+          height: 120px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <header>
+      <div class="site-name-container">
+        <div class="site-name">GALE CHEN</div>
+        <div class="pronouns">they/them</div>
+      </div>
+
+      <nav>
+        <a href="#about">ABOUT</a>
+        <a href="#resume">RESUME</a>
+        <a href="#contact">CONTACT</a>
+        <a href="https://ca.linkedin.com/in/galechen07">linkedin</a>
+        <a href="https://github.com/galeschen/">github</a>
+      </nav>
+    </header>
+
+    <section id="about">
+      <h2>About</h2>
+      <div class="about-content">
+        <img src="./docs/gale_cat.jpg" alt="Gale Chen" />
+        <p>
+          Hello! I'm Gale. I'm currently pursuing a Master's in Computer Science,
+          researching human-computer interaction. Outside of school, I enjoy
+          climbing, hiking, drawing, and leatherworking.
+        </p>
+      </div>
+    </section>
+
+    <section id="resume">
+      <h2>Experience</h2>
+      <div class="section-grid">
+        <div class="section-item">
+          <div class="section-header">
+            <div class="section-role">Teaching Assistant</div>
+            <div class="section-meta">
+              University of British Columbia &#47;&#47; 2022 – Present
+            </div>
+          </div>
+          <ul>
+            <li>Computer Science 317: Introduction to Computer Networking</li>
+            <li>Cognitive Systems 401: Seminar in Cognitive Systems</li>
+          </ul>
+        </div>
+
+        <div class="section-item">
+          <div class="section-header">
+            <div class="section-role">CBTF & Course Coordinator</div>
+            <div class="section-meta">
+              University of British Columbia &#47;&#47; 2023 – 2025
+            </div>
+          </div>
+          <ul>
+            <li>
+              Managed the departmental Computer Based Testing Facility (CBTF),
+              which was used for administering exams for over 34,000 student
+              reservations across 20 courses in one academic term.
+            </li>
+            <li>
+              Configured exams and student reservations, created weekly
+              invigilation schedules for a team of 15 invigilators, and responded
+              to instructor requests in a timely manner.
+            </li>
+          </ul>
+        </div>
+
+        <div class="section-item">
+          <div class="section-header">
+            <div class="section-role">Open Science Specialist</div>
+            <div class="section-meta">
+              University of British Columbia &#47;&#47; 2022
+            </div>
+          </div>
+          <ul>
+            <li>
+              Demonstrated strong debugging skills in developing R and python
+              scripts and installing/testing data analysis programs via Linux
+              command line.
+            </li>
+            <li>
+              Supported life sciences research labs in adopting open science
+              practices by co-writing R workshops and maintaining data
+              management best-practices guides.
+            </li>
+          </ul>
+        </div>
+
+        <div class="section-item">
+          <div class="section-header">
+            <div class="section-role">Bioinformatics Research Assistant</div>
+            <div class="section-meta">
+              Agriculture and Agri-Food Canada &#47;&#47; 2020
+            </div>
+          </div>
+          <ul>
+            <li>
+              Worked as part of an interdisciplinary team on the development of
+              BeeCSI, a large-scale multi-omics diagnostic platform for assessing
+              bee health.
+            </li>
+            <li>
+              Co-authored presentation “Developing tools to study the honeybee
+              (Apis mellifera) gut microbiome response to environmental
+              stressors”, presented at the 2022 North America Honey Bee Research
+              Symposium.
+            </li>
+          </ul>
+        </div>
+
+        <div class="section-item">
+          <div class="section-header">
+            <div class="section-role">Tutor</div>
+            <div class="section-meta">
+              Culture Immersion Education &#47;&#47; 2017 – 2018
+            </div>
+          </div>
+          <ul>
+            <li>
+              One-on-one tutored students grades 5–12 in English, Math, and
+              Science with a collaborative, student-centered approach.
+            </li>
+          </ul>
+        </div>
+
+        <div class="section-download">
+          <a href="./docs/gale_s_chen_cv_2025.pdf" target="_blank">
+            Download Full Resume &rarr;
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <h2>Contact</h2>
+      <p>
+        Let's connect!
+        <a href="mailto:galechen07@gmail.com">galechen07@gmail.com</a>.
+      </p>
+    </section>
+
+    <footer>Thank you for visiting!</footer>
+
+    <script>
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("visible");
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.1 }
+      );
+
+      document
+        .querySelectorAll("section")
+        .forEach((sec) => observer.observe(sec));
+    </script>
+  </body>
+</html>
